@@ -14,7 +14,7 @@ class InputAddresses extends Component {
     const { disable, addresses } = this.props;
     return (
       <div className="form-group">
-        <label htmlFor="addresses">UK Postcode</label>
+        <label htmlFor="addresses">UK Postcodes</label>
         <textarea
           ref="addresses"
           className="form-control"
