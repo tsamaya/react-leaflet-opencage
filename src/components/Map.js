@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import L from "leaflet";
+import React, { Component } from 'react';
+import L from 'leaflet';
 // postCSS import of Leaflet's CSS
-import "leaflet/dist/leaflet.css";
+import 'leaflet/dist/leaflet.css';
 
 class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      map: null
+      map: null,
     };
     this.mapNode = null;
   }
@@ -27,19 +27,19 @@ class Map extends Component {
     // creates the Leaflet map object
     // it is called after the Map component mounts
     let map = L.map(this.mapNode, {
-      center: [40, 12],
-      zoom: 3
+      center: [54.003644, -2.547859],
+      zoom: 5,
     });
 
     L.tileLayer(
-      "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}",
+      'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}',
       {
         attribution:
           'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        subdomains: "abcd",
+        subdomains: 'abcd',
         minZoom: 0,
         maxZoom: 20,
-        ext: "png"
+        ext: 'png',
       }
     ).addTo(map);
 
@@ -52,7 +52,7 @@ class Map extends Component {
   render() {
     return (
       <div className="map-wrapper">
-        <div ref={node => (this.mapNode = node)} id="map" ></div>
+        <div ref={node => (this.mapNode = node)} id="map" />
       </div>
     );
   }
