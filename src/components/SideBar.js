@@ -1,71 +1,74 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import InputAPIKey from './InputAPIKey';
 import InputAddresses from './InputAddresses';
 import AddressesTable from './AddressesTable';
-import api from '../services/api';
+// import api from '../services/api';
 
 class SideBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      apiKey: '',
-      addresses: '',
-      addressesDisbaled: true,
-      submitDisbaled: true,
-      results: [],
-    };
-    this.handleAPIKeyChange = this.handleAPIKeyChange.bind(this);
-    this.handleAddressesChange = this.handleAddressesChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleRestAddresses = this.handleRestAddresses.bind(this);
-  }
-  handleAPIKeyChange(event) {
-    const { value } = event.target;
-    let disabled = true;
-    if (value.length >= 30) {
-      disabled = false;
-    }
-    this.setState({ apiKey: value, addressesDisbaled: disabled });
-  }
+  // constructor(props) {
+  //   super(props);
+    // this.state = {
+    //   apiKey: props.apiLey,
+    //   addresses: props.addresses,
+    //   addressesDisbaled: props.addressesDisbaled,
+    //   submitDisbaled: props.submitDisbaled,
+    //   results: props.results,
+    // };
+    // this.handleAPIKeyChange = props.onAPIKeyChange;
+    // this.handleAddressesChange = props.onAddressesChange;
+    // this.handleSubmit = props.onSubmit;
+    // this.handleRestAddresses = props.onRestAddresses;
+  // }
+  // handleAPIKeyChange(event) {
+  //   const { value } = event.target;
+  //   let disabled = true;
+  //   if (value.length >= 30) {
+  //     disabled = false;
+  //   }
+  //   this.setState({ apiKey: value, addressesDisbaled: disabled });
+  // }
 
-  handleAddressesChange(event) {
-    const { value } = event.target;
-    let disabled = true;
-    if (value.length >= 2) {
-      disabled = false;
-    }
-    this.setState({ addresses: value, submitDisbaled: disabled });
-  }
+  // handleAddressesChange(event) {
+  //   const { value } = event.target;
+  //   let disabled = true;
+  //   if (value.length >= 2) {
+  //     disabled = false;
+  //   }
+  //   this.setState({ addresses: value, submitDisbaled: disabled });
+  // }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    const inarray = this.state.addresses.split('\n');
-    api.batchGeocode(this.state.apiKey, inarray).then(data => {
-      // console.log(data);
-      this.setState({ results: data, submitDisbaled: true, addressesDisbaled: true });
-    });
-  }
+  // handleSubmit(event) {
+  //   event.preventDefault();
+  //   const inarray = this.state.addresses.split('\n');
+  //   api.batchGeocode(this.state.apiKey, inarray).then(data => {
+  //     // console.log(data);
+  //     this.setState({ results: data, submitDisbaled: true, addressesDisbaled: true });
+  //   });
+  // }
 
-  handleRestAddresses(event) {
-    this.setState({ results: [], addresses: '', addressesDisbaled: false });
-  }
+  // handleRestAddresses(event) {
+  //   this.setState({ results: [], addresses: '', addressesDisbaled: false });
+  // }
 
   render() {
     const {
-      addresses,
       addressesDisbaled,
       submitDisbaled,
       results,
-    } = this.state;
+      onAPIKeyChange,
+      onAddressesChange,
+      onSubmit,
+      onRestAddresses,
+    } = this.props;
     if (results.length === 0) {
       return (
         <div className="sidebar">
-          <form onSubmit={this.handleSubmit}>
-            <InputAPIKey onChange={this.handleAPIKeyChange} />
+          <form onSubmit={onSubmit}>
+            <InputAPIKey onChange={onAPIKeyChange} />
             <InputAddresses
-              value={addresses}
               disable={addressesDisbaled}
-              onChange={this.handleAddressesChange}
+              onChange={onAddressesChange}
             />
             <button
               type="submit"
@@ -85,17 +88,16 @@ class SideBar extends Component {
               e.preventDefault();
             }}
           >
-            <InputAPIKey onChange={this.handleAPIKeyChange} />
+            <InputAPIKey onChange={onAPIKeyChange} />
             <InputAddresses
-              value={addresses}
               disable={addressesDisbaled}
-              onChange={this.handleAddressesChange}
+              onChange={onAddressesChange}
             />
             <AddressesTable addresses={results} />
             <button
               type="button"
               className="btn btn-primary"
-              onClick={this.handleRestAddresses}
+              onClick={onRestAddresses}
             >
               Reset
             </button>
@@ -105,4 +107,11 @@ class SideBar extends Component {
     }
   }
 }
+SideBar.propTypes = {
+  onAPIKeyChange: PropTypes.func.isRequired,
+  onAddressesChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onRestAddresses: PropTypes.func.isRequired,
+};
+
 export default SideBar;
