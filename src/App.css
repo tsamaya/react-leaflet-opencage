@@ -1,7 +1,16 @@
+html, body {
+  font-family: "Roboto", "Helvetica", arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fcfcfc;
+  height: 100%;
+}
+
 .map-wrapper {
   height: 100%;
 }
 #map {
   width: auto;
   height: 100%;
+  min-height: 400px;
 }
