@@ -5,7 +5,7 @@ import SideBar from './components/SideBar';
 
 import './App.css';
 
-const App = ({ store }) => (
+const App = () => (
   <Fragment>
     <Header />
     <div className="container-fluid">
