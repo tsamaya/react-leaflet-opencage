@@ -14,7 +14,16 @@ class App extends Component {
       addresses: '',
       addressesDisbaled: true,
       submitDisbaled: true,
-      results: [],
+      results: [
+        {
+          input: 'W10 5JJ',
+          formatted: '"Kensington and Chelsea W10 5XL, United Kingdom"',
+          geometry: {
+            lat: 51.518171,
+            lng: -0.208935,
+          },
+        },
+      ],
     };
     this.handleAPIKeyChange = this.handleAPIKeyChange.bind(this);
     this.handleAddressesChange = this.handleAddressesChange.bind(this);
@@ -44,7 +53,7 @@ class App extends Component {
     event.preventDefault();
     const inarray = this.state.addresses.split('\n');
     api.batchGeocode(this.state.apiKey, inarray).then(data => {
-      // console.log(data);
+      console.log(data);
       this.setState({
         results: data,
         submitDisbaled: true,
@@ -73,12 +82,12 @@ class App extends Component {
           <div className="row">
             <div className="col-6 col-md-4">
               <SideBar
-              apiKey={apiKey}
-              value={addresses}
-              addressesDisbaled={addressesDisbaled}
-              submitDisbaled={submitDisbaled}
-              addresses={addresses}
-              results={results}
+                apiKey={apiKey}
+                value={addresses}
+                addressesDisbaled={addressesDisbaled}
+                submitDisbaled={submitDisbaled}
+                addresses={addresses}
+                results={results}
                 onSubmit={this.handleSubmit}
                 onAPIKeyChange={this.handleAPIKeyChange}
                 onAddressesChange={this.handleAddressesChange}
@@ -86,7 +95,7 @@ class App extends Component {
               />
             </div>
             <div className="col-12 col-md-8">
-              <Map />
+              <Map data={results} />
             </div>
           </div>
         </div>

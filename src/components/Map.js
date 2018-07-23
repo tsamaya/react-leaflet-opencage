@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import L from 'leaflet';
-// postCSS import of Leaflet's CSS
+// import Leaflet's CSS
 import 'leaflet/dist/leaflet.css';
 
 class Map extends Component {
@@ -8,6 +8,8 @@ class Map extends Component {
     super(props);
     this.state = {
       map: null,
+      layer: null,
+      data: props.data
     };
     this.mapNode = null;
   }
@@ -16,6 +18,7 @@ class Map extends Component {
     if (!this.state.map) {
       this.initMap();
     }
+
   }
   componentWillUnmount() {
     // destroys the Leaflet map object & related event listeners
@@ -26,7 +29,7 @@ class Map extends Component {
     if (this.state.map) return;
     // creates the Leaflet map object
     // it is called after the Map component mounts
-    let map = L.map(this.mapNode, {
+    const map = L.map(this.mapNode, {
       center: [54.003644, -2.547859],
       zoom: 5,
     });
@@ -43,16 +46,47 @@ class Map extends Component {
       }
     ).addTo(map);
 
-    // set the state
-    this.setState({ map });
+    const layer = L.featureGroup().addTo(map);
 
-    map.invalidateSize();
+    const { data } = this.props;
+    if (data && data.length > 0) {
+      // const { layer } = this.state;
+      // if (layer) {
+      //   layer.clearLayers();
+        for (let i = 0; i < data.length; i++) {
+          const marker = L.circle(data[i].geometry, {radius: 200});
+          marker.addTo(layer);
+        }
+        map.fitBounds(layer.getBounds());
+      // }
+    }
+
+    // set the state
+    this.setState({ map, layer });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.data !== this.props.data) {
+      const { data } = this.props;
+      if (data && data.length > 0) {
+        const { layer } = this.state;
+        if (layer) {
+          layer.clearLayers();
+          for (let i = 0; i < data.length; i++) {
+            const marker = L.circle(data[i].geometry, {radius: 200});
+            marker.addTo(layer);
+          }
+          this.state.map.fitBounds(layer.getBounds());
+        }
+      }
+  
+    }
   }
 
   render() {
     return (
       <div className="map-wrapper">
-        <div ref={node => (this.mapNode = node)} id="map" />
+        <div ref={node => (this.mapNode = node)} id="map" data={this.props.data}/>
       </div>
     );
   }
