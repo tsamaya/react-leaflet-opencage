@@ -15,14 +15,6 @@ class App extends Component {
       addressesDisbaled: true,
       submitDisbaled: true,
       results: [
-        {
-          input: 'W10 5JJ',
-          formatted: '"Kensington and Chelsea W10 5XL, United Kingdom"',
-          geometry: {
-            lat: 51.518171,
-            lng: -0.208935,
-          },
-        },
       ],
     };
     this.handleAPIKeyChange = this.handleAPIKeyChange.bind(this);
