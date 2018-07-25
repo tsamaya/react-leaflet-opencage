@@ -18,7 +18,9 @@ class InputAPIKey extends Component {
           onChange={this.handleChange}
         />
         <small className="form-text text-muted">
-          Your OpenCage Data API Key.
+          Your OpenCage Data API Key (<a href="https://opencagedata.com/users/sign_up">
+            register
+          </a>).
         </small>
       </div>
     );
