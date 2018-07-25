@@ -6,11 +6,11 @@ html, body {
   height: 100%;
 }
 
-.map-wrapper {
+.h100 {
   height: 100%;
 }
+
 #map {
   width: auto;
-  height: 100%;
-  min-height: 400px;
+  min-height: 350px;
 }

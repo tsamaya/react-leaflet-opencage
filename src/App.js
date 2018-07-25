@@ -14,8 +14,7 @@ class App extends Component {
       addresses: '',
       addressesDisbaled: true,
       submitDisbaled: true,
-      results: [
-      ],
+      results: [],
     };
     this.handleAPIKeyChange = this.handleAPIKeyChange.bind(this);
     this.handleAddressesChange = this.handleAddressesChange.bind(this);
@@ -70,8 +69,8 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        <div className="container-fluid">
-          <div className="row">
+        <div className="container-fluid h100">
+          <div className="row h100">
             <div className="col-6 col-md-4">
               <SideBar
                 apiKey={apiKey}

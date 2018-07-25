@@ -9,7 +9,7 @@ class Map extends Component {
     this.state = {
       map: null,
       layer: null,
-      data: props.data
+      data: props.data,
     };
     this.mapNode = null;
   }
@@ -18,7 +18,6 @@ class Map extends Component {
     if (!this.state.map) {
       this.initMap();
     }
-
   }
   componentWillUnmount() {
     // destroys the Leaflet map object & related event listeners
@@ -53,11 +52,11 @@ class Map extends Component {
       // const { layer } = this.state;
       // if (layer) {
       //   layer.clearLayers();
-        for (let i = 0; i < data.length; i++) {
-          const marker = L.circle(data[i].geometry, {radius: 200});
-          marker.addTo(layer);
-        }
-        map.fitBounds(layer.getBounds());
+      for (let i = 0; i < data.length; i++) {
+        const marker = L.circle(data[i].geometry, { radius: 200 });
+        marker.addTo(layer);
+      }
+      map.fitBounds(layer.getBounds());
       // }
     }
 
@@ -66,27 +65,31 @@ class Map extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.data !== this.props.data) {
+    if (prevState.data !== this.props.data) {
       const { data } = this.props;
       if (data && data.length > 0) {
         const { layer } = this.state;
         if (layer) {
           layer.clearLayers();
           for (let i = 0; i < data.length; i++) {
-            const marker = L.circle(data[i].geometry, {radius: 200});
+            const marker = L.circle(data[i].geometry, { radius: 200 });
             marker.addTo(layer);
           }
           this.state.map.fitBounds(layer.getBounds());
         }
       }
-  
     }
   }
 
   render() {
     return (
-      <div className="map-wrapper">
-        <div ref={node => (this.mapNode = node)} id="map" data={this.props.data}/>
+      <div className="map-wrapper h100">
+        <div
+          ref={node => (this.mapNode = node)}
+          id="map"
+          className="h100"
+          data={this.props.data}
+        />
       </div>
     );
   }
