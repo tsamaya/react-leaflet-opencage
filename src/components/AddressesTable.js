@@ -9,7 +9,7 @@ class AddressesTable extends Component {
     };
   }
   render() {
-      const {addresses} = this.state;
+    const { addresses } = this.state;
     return (
       <div className="form-group">
         <label htmlFor="results">Results</label>

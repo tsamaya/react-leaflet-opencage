@@ -26,6 +26,7 @@ class Map extends Component {
 
   initMap() {
     if (this.state.map) return;
+
     // creates the Leaflet map object
     // it is called after the Map component mounts
     const map = L.map(this.mapNode, {

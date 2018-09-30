@@ -8,15 +8,10 @@ const batchGeocode = (key, addresses) => {
     for (let i = 0; i < addresses.length; i++) {
       const address = addresses[i];
       if (address.length > 0) {
-        const p = opencage
-          .geocode({
-            key,
-            q: address,
-          })
-          .then(response => {
-            const { geometry, formatted } = response.results[0];
-            results.push({ input: address, geometry, formatted });
-          });
+        const p = opencage.geocode({ key, q: address }).then(response => {
+          const { geometry, formatted } = response.results[0];
+          results.push({ input: address, geometry, formatted });
+        });
         prs.push(p);
       }
     }
@@ -26,6 +21,4 @@ const batchGeocode = (key, addresses) => {
   });
 };
 
-export default {
-  batchGeocode,
-};
+export default { batchGeocode };

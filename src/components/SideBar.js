@@ -8,17 +8,17 @@ import AddressesTable from './AddressesTable';
 class SideBar extends Component {
   // constructor(props) {
   //   super(props);
-    // this.state = {
-    //   apiKey: props.apiLey,
-    //   addresses: props.addresses,
-    //   addressesDisbaled: props.addressesDisbaled,
-    //   submitDisbaled: props.submitDisbaled,
-    //   results: props.results,
-    // };
-    // this.handleAPIKeyChange = props.onAPIKeyChange;
-    // this.handleAddressesChange = props.onAddressesChange;
-    // this.handleSubmit = props.onSubmit;
-    // this.handleRestAddresses = props.onRestAddresses;
+  // this.state = {
+  //   apiKey: props.apiLey,
+  //   addresses: props.addresses,
+  //   addressesDisbaled: props.addressesDisbaled,
+  //   submitDisbaled: props.submitDisbaled,
+  //   results: props.results,
+  // };
+  // this.handleAPIKeyChange = props.onAPIKeyChange;
+  // this.handleAddressesChange = props.onAddressesChange;
+  // this.handleSubmit = props.onSubmit;
+  // this.handleRestAddresses = props.onRestAddresses;
   // }
   // handleAPIKeyChange(event) {
   //   const { value } = event.target;
@@ -42,7 +42,7 @@ class SideBar extends Component {
   //   event.preventDefault();
   //   const inarray = this.state.addresses.split('\n');
   //   api.batchGeocode(this.state.apiKey, inarray).then(data => {
-  //     // console.log(data);
+  //      console.log(data);
   //     this.setState({ results: data, submitDisbaled: true, addressesDisbaled: true });
   //   });
   // }
