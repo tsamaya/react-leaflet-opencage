@@ -1,4 +1,3 @@
-// import opencage from 'opencage-api-client/dist/opencage-api.min';
 import opencage from 'opencage-api-client';
 
 const batchGeocode = (key, addresses) => {
