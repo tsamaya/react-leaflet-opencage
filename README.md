@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/tsamaya/react-leaflet-opencage.svg?branch=master)](https://travis-ci.org/tsamaya/react-leaflet-opencage)
 
-This is my very first app built with [React](https://reactjs.org/) using [LeafletJS](https://leafletjs.com/) and OpenCage Data [Geocoder](https://opencagedata.com/) API.
+This is my very first app built with [React](https://reactjs.org/) using [LeafletJS](https://leafletjs.com/) and OpenCage [Geocoder](https://opencagedata.com/) API.
 
 I did this application for a friend who wanted to display UK Postcodes on a Map.
 
